@@ -1,6 +1,6 @@
 package com.food.jedzonko.domain;
 
-import com.food.jedzonko.infrastructure.database.entity.StreetEntity;
+import com.food.jedzonko.entities.StreetEntity;
 import lombok.*;
 
 import java.util.Set;

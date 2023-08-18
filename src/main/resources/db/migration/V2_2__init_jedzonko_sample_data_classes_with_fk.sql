@@ -19,12 +19,12 @@ INSERT INTO restaurant (owner_id, restaurant_name) VALUES
                                                                   (2, 'Latajace smaki');
 
 -- Wprowadzenie przykładowych dań w menu
-INSERT INTO menu_item (restaurant_id, category_id, item_name, price) VALUES
-                                                                         (1, 1, 'Appetizer 1', 7.99),
-                                                                         (1, 2, 'Soup 1', 4.50),
-                                                                         (1, 3, 'Main Dish 1', 12.75),
-                                                                         (2, 1, 'Appetizer 2', 6.50),
-                                                                         (2, 3, 'Main Dish 2', 11.25);
+INSERT INTO menu_item (category_id, item_name, price) VALUES
+                                                                         (1, 'Appetizer 1', 7.99),
+                                                                         (2, 'Soup 1', 4.50),
+                                                                         (3, 'Main Dish 1', 12.75),
+                                                                         (1, 'Appetizer 2', 6.50),
+                                                                         (3, 'Main Dish 2', 11.25);
 
 
 -- Wprowadzenie przykładowych zamówień
@@ -45,4 +45,9 @@ INSERT INTO restaurant_delivery_streets (restaurant_id, street_id) VALUES
                                                                   (1, 3),
                                                                   (2, 2);
 
-
+-- Wprowadzenie przykładowych pozycji menu dla restauracji
+INSERT INTO restaurant_menu (restaurant_id, item_id) VALUES
+                                                                       (1, 1),
+                                                                       (1, 2),
+                                                                       (1, 3),
+                                                                       (2, 2);
