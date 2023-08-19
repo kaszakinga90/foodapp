@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface OrderItemEntityMapper {
+public interface OrderItemMapper {
 
     @Mapping(target = "orderDto", ignore = true)
     @Mapping(target = "menuItemDto", ignore = true)

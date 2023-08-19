@@ -43,4 +43,12 @@ public class MenuItemEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menuItem")
     private Set<OrderItemEntity> orderItems;
+
+    public MenuItemEntity(CategoryEntity category, String itemName, String description, BigDecimal price, String itemImageUrl) {
+        this.category = category;
+        this.itemName = itemName;
+        this.description = description;
+        this.price = price;
+        this.itemImageUrl = itemImageUrl;
+    }
 }

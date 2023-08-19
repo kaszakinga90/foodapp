@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -22,6 +24,14 @@ public class MenuItemService {
     private final MenuItemMapper menuItemMapper;
     private final CategoryRepository categoryRepository;
     private final RestaurantRepository restaurantRepository;
+
+    public MenuItemEntity getMenuItem(final Integer id){
+        return menuItemRepository.findById(id).orElseThrow();
+    }
+
+    public List<MenuItemEntity> getMenu(){
+        return menuItemRepository.findAll();
+    }
 
     public MenuItemDTO createMenuItemForRestaurant(Integer restaurantId, MenuItemDTO menuItemDTO) {
         RestaurantEntity restaurantEntity = restaurantRepository.findById(restaurantId)
@@ -36,5 +46,24 @@ public class MenuItemService {
 
         MenuItemEntity savedMenuItemEntity = menuItemRepository.save(newMenuItemEntity);
         return menuItemMapper.mapFromEntity(savedMenuItemEntity);
+    }
+
+    public MenuItemEntity updateMenuItem(Integer menuId, MenuItemEntity menuItemEntity) {
+        MenuItemEntity itemToUpdate = menuItemRepository.findById(menuId)
+                .orElseThrow(() -> new EntityNotFoundException("MenuItem with id " + menuId + " not found"));
+
+        itemToUpdate.setItemName(menuItemEntity.getItemName());
+        itemToUpdate.setCategory(menuItemEntity.getCategory());
+        itemToUpdate.setItemImageUrl(menuItemEntity.getItemImageUrl());
+        itemToUpdate.setDescription(menuItemEntity.getDescription());
+        itemToUpdate.setPrice(menuItemEntity.getPrice());
+
+        return menuItemRepository.save(itemToUpdate);
+    }
+
+    public void deleteMenuItem(final Integer id){
+        if(menuItemRepository.existsById(id)){
+            menuItemRepository.findById(id);
+        }
     }
 }
